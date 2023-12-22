@@ -5,12 +5,12 @@ const MIN_PARTICLE_SIZE = 12;
 const MAX_PARTICLE_SIZE = 100;
 const MIN_FORCE = 0.01;
 const MAX_FORCE = 0.02;
-const REPULSION_RADIUS = 50;
+const REPULSION_RADIUS = 100;
 const REPULSION_STRENGTH = 0.2;
 
-var particles = [];
-var particleCount = 550;
-var maxSize = 80;
+let particles = [];
+let particleCount = 300;
+let maxSize = 100;
 
 function setup() {
   let canvas = createCanvas(windowWidth, windowHeight, WEBGL);
@@ -35,8 +35,8 @@ function draw() {
       particle.position.x - width / 2,
       particle.position.y - height / 2
     );
+    const spin = particle.velocity.mag() * SPIN_MULTIPLIER;
 
-    let spin = particle.velocity.mag() * SPIN_MULTIPLIER;
     rotate(radians(particle.mapped_angle + spin));
 
     fill(particle.color);
@@ -104,7 +104,6 @@ function mousePressed() {
 
 function spawnParticles() {
   particles = [];
-
   maxSize = map(
     particleCount,
     MIN_PARTICLE_COUNT,

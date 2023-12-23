@@ -15,6 +15,7 @@ let maxSize = 100;
 function setup() {
   let canvas = createCanvas(windowWidth, windowHeight, WEBGL);
   canvas.canvas.oncontextmenu = () => false;
+  spawnParticles();
 }
 
 function draw() {

@@ -11,6 +11,7 @@ const REPULSION_STRENGTH = 0.2;
 let particles = [];
 let particleCount = 500;
 let maxSize = 50;
+let SCORE = 0;
 
 function setup() {
   let canvas = createCanvas(windowWidth, windowHeight);

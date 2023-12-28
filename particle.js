@@ -42,7 +42,9 @@ function Particle(_x, _y, _size, _color) {
 
     if (mouseDistance < REPULSION_RADIUS * 0.5) {
       this.inBox = true;
-      this.color = color(100, 50, 255);
+      SCORE++;
+      // class score 인 부분 업데이트
+      document.getElementById("score").innerHTML = `${SCORE}`;
     } else if (mouseDistance < REPULSION_RADIUS) {
       let repulse = new p5.Vector(this.position.x, this.position.y);
       repulse.sub(mx, my);
@@ -80,17 +82,19 @@ function Particle(_x, _y, _size, _color) {
 
     this.velocity.add(this.acc);
     this.position.add(this.velocity);
-    this.acc.mult(0.1);
+    this.acc.mult(0.15);
   };
 
   this.draw = function () {
     push();
+
+    noStroke();
     translate(this.position.x, this.position.y);
     const spin = this.velocity.mag() * SPIN_MULTIPLIER;
 
     rotate(radians(this.mapped_angle + spin));
 
-    fill(this.color);
+    fill(!this.inBox ? this.color : color(100, 50, 255));
     if (this.shape >= 2) {
       push();
       fill(255, 255, 255, 230);

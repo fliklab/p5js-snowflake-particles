@@ -35,53 +35,7 @@ function draw() {
 
   particles.forEach((particle) => {
     particle.move();
-
-    push();
-    translate(particle.position.x, particle.position.y);
-    const spin = particle.velocity.mag() * SPIN_MULTIPLIER;
-
-    rotate(radians(particle.mapped_angle + spin));
-
-    fill(particle.color);
-    if (particle.shape >= 3) {
-      fill(255, 255, 255, 255);
-      // 육각 결정 모양의 눈꽃 그리기
-      beginShape();
-      vertex(0, -particle.size / 2);
-      vertex(-particle.size / 2, -particle.size / 4);
-      vertex(-particle.size / 2, particle.size / 4);
-      vertex(0, particle.size / 2);
-      vertex(particle.size / 2, particle.size / 4);
-      vertex(particle.size / 2, -particle.size / 4);
-      endShape(CLOSE);
-    } else if (particle.shape >= 2) {
-      fill(255, 255, 255, 230);
-      // astrict * 모양 그리기
-      beginShape();
-      vertex(0, -particle.size / 2);
-      vertex(-particle.size / 2, -particle.size / 4);
-      vertex(-particle.size / 2, particle.size / 4);
-      vertex(0, particle.size / 2);
-      vertex(particle.size / 2, particle.size / 4);
-      vertex(particle.size / 2, -particle.size / 4);
-      endShape(CLOSE);
-    } else if (particle.shape >= 1) {
-      // 육각 별 모양의 눈꽃 그리기
-      beginShape();
-      vertex(0, -particle.size / 2);
-      vertex(-particle.size / 4, -particle.size / 4);
-      vertex(-particle.size / 2, 0);
-      vertex(-particle.size / 4, particle.size / 4);
-      vertex(0, particle.size / 2);
-      vertex(particle.size / 4, particle.size / 4);
-      vertex(particle.size / 2, 0);
-      vertex(particle.size / 4, -particle.size / 4);
-      endShape(CLOSE);
-    } else {
-      ellipse(0, 0, particle.size, particle.size);
-    }
-
-    pop();
+    particle.draw();
   });
 
   pop();

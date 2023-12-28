@@ -2,18 +2,18 @@ const SPIN_MULTIPLIER = 45;
 const MIN_PARTICLE_COUNT = 200;
 const MAX_PARTICLE_COUNT = 700;
 const MIN_PARTICLE_SIZE = 12;
-const MAX_PARTICLE_SIZE = 100;
+const MAX_PARTICLE_SIZE = 50;
 const MIN_FORCE = 0.01;
 const MAX_FORCE = 0.02;
 const REPULSION_RADIUS = 100;
 const REPULSION_STRENGTH = 0.2;
 
 let particles = [];
-let particleCount = 300;
-let maxSize = 100;
+let particleCount = 500;
+let maxSize = 50;
 
 function setup() {
-  let canvas = createCanvas(windowWidth, windowHeight, WEBGL);
+  let canvas = createCanvas(windowWidth, windowHeight);
   canvas.canvas.oncontextmenu = () => false;
   spawnParticles();
 }
@@ -28,14 +28,16 @@ function draw() {
 
   rectMode(CENTER);
 
+  noFill(0, 0, 0);
+  strokeWeight(1);
+  stroke(255, 255, 255);
+  rect(mouseX, mouseY, REPULSION_RADIUS, REPULSION_RADIUS);
+
   particles.forEach((particle) => {
     particle.move();
 
     push();
-    translate(
-      particle.position.x - width / 2,
-      particle.position.y - height / 2
-    );
+    translate(particle.position.x, particle.position.y);
     const spin = particle.velocity.mag() * SPIN_MULTIPLIER;
 
     rotate(radians(particle.mapped_angle + spin));
@@ -82,9 +84,9 @@ function draw() {
     pop();
   });
 
-  rectMode(CORNER);
-
   pop();
+
+  rectMode(CORNER);
 }
 
 function keyPressed() {
@@ -100,7 +102,7 @@ function keyPressed() {
 }
 
 function mousePressed() {
-  spawnParticles();
+  // spawnParticles();
 }
 
 function spawnParticles() {

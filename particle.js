@@ -1,8 +1,8 @@
-function Particle(_x, _y, _size, _color) {
+function Particle(_x, _y, _size, _color, target_x, target_y) {
   this.position = new p5.Vector(_x, _y);
   this.velocity = new p5.Vector(0, 0);
   this.acc = new p5.Vector(0, 0);
-  this.target = new p5.Vector(_x, _y);
+  this.target = new p5.Vector(target_x ?? _x, target_y ?? _y);
   this.size = _size;
   this.shape = random(4);
   this.mapped_angle =
@@ -44,7 +44,7 @@ function Particle(_x, _y, _size, _color) {
       this.inBox = true;
       SCORE++;
       // class score 인 부분 업데이트
-      document.getElementById("score").innerHTML = `${SCORE}`;
+      document.getElementById("score").innerHTML = `${SCORE}/${particleCount}`;
     } else if (mouseDistance < REPULSION_RADIUS) {
       let repulse = new p5.Vector(this.position.x, this.position.y);
       repulse.sub(mx, my);
@@ -82,7 +82,7 @@ function Particle(_x, _y, _size, _color) {
 
     this.velocity.add(this.acc);
     this.position.add(this.velocity);
-    this.acc.mult(0.15);
+    this.acc.mult(0.9);
   };
 
   this.draw = function () {

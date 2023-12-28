@@ -54,6 +54,11 @@ function keyPressed() {
     particleCount = max(particleCount - 50, MIN_PARTICLE_COUNT);
     spawnParticles();
   }
+
+  if (key == " ") {
+    particleCount = max(particleCount - 50, MIN_PARTICLE_COUNT);
+    spawnParticles();
+  }
 }
 
 function mousePressed() {
@@ -95,20 +100,22 @@ function spawnParticles() {
 
         if (smallestSize > 0) {
           newParticle = new Particle(
-            x,
-            y,
+            random(0, width),
+            0,
             min(smallestSize, maxSize) * 0.75,
             color(255, 255, 255, 200),
-            int(random(4))
+            x,
+            y
           );
         }
       } else {
         newParticle = new Particle(
-          x,
-          y,
+          0,
+          0,
           maxSize,
           color(255, 255, 255, 200),
-          int(random(4))
+          x,
+          y
         );
       }
 

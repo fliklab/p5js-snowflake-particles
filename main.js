@@ -101,7 +101,7 @@ function spawnParticles() {
         if (smallestSize > 0) {
           newParticle = new Particle(
             random(0, width),
-            0,
+            random(0, height),
             min(smallestSize, maxSize) * 0.75,
             color(255, 255, 255, 200),
             x,

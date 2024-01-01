@@ -82,7 +82,7 @@ function Particle(_x, _y, _size, _color, target_x, target_y) {
 
     this.velocity.add(this.acc);
     this.position.add(this.velocity);
-    this.acc.mult(0.9);
+    this.acc.mult(0.15);
   };
 
   this.draw = function () {
